@@ -29,11 +29,10 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::ModularComponent#command)
       def command
-        @droplet.java_opts.add_system_property 'jetty.port', '$PORT'
-
         [
           "JETTY_ARGS=jetty.port=$PORT",
           "JETTY_BASE=.",
+          "JAVA=#{@droplet.java_home.root}/bin/java",
           @droplet.java_home.as_env_var,
           "$PWD/#{(@droplet.sandbox + 'bin/jetty.sh').relative_path_from(@droplet.root)}",
           'run'

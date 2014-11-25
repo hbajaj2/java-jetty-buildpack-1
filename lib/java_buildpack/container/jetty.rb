@@ -32,8 +32,9 @@ module JavaBuildpack
         @droplet.java_opts.add_system_property 'jetty.port', '$PORT'
 
         [
+          "JETTY_ARGS=jetty.port=$PORT",
+          "JETTY_BASE=.",
           @droplet.java_home.as_env_var,
-          @droplet.java_opts.as_env_var,
           "$PWD/#{(@droplet.sandbox + 'bin/jetty.sh').relative_path_from(@droplet.root)}",
           'run'
         ].flatten.compact.join(' ')

@@ -33,7 +33,7 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
         download_tar
-        @droplet.copy_resources
+        move_to(@application.root.children, root)
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
@@ -43,6 +43,30 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::VersionedDependencyComponent#supports?)
       def supports?
         true
+      end
+
+      private
+
+      # Link a collection of files to a destination directory, using relative paths
+      #
+      # @param [Array<Pathname>] source the collection of files to link
+      # @param [Pathname] destination the destination directory to link to
+      # @return [Void]
+      def move_to(source, destination)
+        FileUtils.mkdir_p destination
+        source.each do |path|
+          unless path.to_s =~ /.*\/.java-buildpack/ 
+            FileUtils.cp_r(path, destination)
+          end
+        end
+      end
+
+      def root
+        @droplet.sandbox + 'webapps/ROOT'
+      end
+
+      def web_inf_lib
+        @droplet.root + 'WEB-INF/lib'
       end
     end
 

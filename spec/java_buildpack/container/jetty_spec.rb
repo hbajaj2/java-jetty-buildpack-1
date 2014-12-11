@@ -59,7 +59,7 @@ describe JavaBuildpack::Container::Jetty do
   it 'return command' do
 
     expect(component.command).to eq("JETTY_ARGS=jetty.port=$PORT JETTY_BASE=. JAVA=#{(java_home.root + '/bin/java')} "\
-        "#{java_home.as_env_var} $PWD/.java-buildpack/jetty/bin/jetty.sh run")
+        "JAVA_OPTIONS=\"#{java_opts.join(' ')}\" #{java_home.as_env_var} $PWD/.java-buildpack/jetty/bin/jetty.sh run")
   end
 
 end

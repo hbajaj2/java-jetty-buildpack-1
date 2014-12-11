@@ -23,11 +23,11 @@ describe JavaBuildpack::Container::JettyInstance do
 
   let(:component_id) { 'jetty' }
 
-  it 'should always detect' do
+  it 'always detect jetty' do
     expect(component.detect).to eq("jetty-instance=#{version}")
   end
 
-  it 'should extract Tomcat from a GZipped TAR',
+  it 'extract Jetty from a GZipped TAR',
      app_fixture:   'container_jetty',
      cache_fixture: 'stub-jetty.tar.gz' do
 

@@ -31,32 +31,32 @@ describe JavaBuildpack::Container::Jetty do
 
   let(:jetty_configuration) { double('jetty-configuration') }
 
-  it 'should detect WEB-INF',
+  it 'detect WEB-INF',
      app_fixture: 'container_jetty' do
 
     expect(component.supports?).to be
   end
 
-  it 'should not detect when WEB-INF is absent',
+  it 'do not detect when WEB-INF is absent',
      app_fixture: 'container_main' do
 
     expect(component.supports?).not_to be
   end
 
-  it 'should not detect when WEB-INF is present in a Java main application',
+  it 'do not detect when WEB-INF is present in a Java main application',
      app_fixture: 'container_main_with_web_inf' do
 
     expect(component.supports?).not_to be
   end
 
-  it 'should create submodules' do
+  it 'create submodules' do
     expect(JavaBuildpack::Container::JettyInstance)
     .to receive(:new).with(sub_configuration_context(jetty_configuration))
 
     component.sub_components context
   end
 
-  it 'should return command' do
+  it 'return command' do
 
     expect(component.command).to eq("JETTY_ARGS=jetty.port=$PORT JETTY_BASE=. JAVA=#{(java_home.root + '/bin/java')} "\
         "#{java_home.as_env_var} $PWD/.java-buildpack/jetty/bin/jetty.sh run")

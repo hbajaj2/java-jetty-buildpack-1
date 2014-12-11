@@ -1,6 +1,6 @@
 # Encoding: utf-8
 # Cloud Foundry Java Buildpack
-# Copyright 2013 the original author or authors.
+# Copyright (c) 2014 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,17 +14,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# A mixin that adds the ability to turn a +String+ into dash case
-class String
+require 'spec_helper'
+require 'application_helper'
+require 'java_buildpack/util/sanitizer'
 
-  # Converts a string to dash case.  For example, the Spring +DashCase+ would become +dash-case+.
-  #
-  # @return [String] The dash case rendering of this +String+
-  def dash_case
-    split('::').last
-      .gsub(/([A-Z]+)([A-Z][a-z])/, '\1-\2')
-      .gsub(/([a-z\d])([A-Z])/, '\1-\2')
-      .downcase
+describe 'sanitize_uri' do # rubocop:disable RSpec/DescribeClass
+  include_context 'application_helper'
+
+  it 'sanitizes uri with credentials in' do
+    expect('https://myuser:mypass@myhost/path/to/file'.sanitize_uri).to eq('https://myhost/path/to/file')
+  end
+
+  it 'does not sanatize uri with no credentials in' do
+    expect('https://myhost/path/to/file'.sanitize_uri).to eq('https://myhost/path/to/file')
   end
 
 end

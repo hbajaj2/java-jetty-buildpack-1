@@ -55,7 +55,7 @@ module JavaBuildpack
       def move_to(source, destination)
         FileUtils.mkdir_p destination
         source.each do |path|
-          unless path.to_s =~ /.*\/.java-buildpack/ 
+          unless path.to_s =~ /.*\/.java-buildpack/
             FileUtils.cp_r(path, destination)
           end
         end

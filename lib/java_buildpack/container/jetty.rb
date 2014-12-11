@@ -18,7 +18,6 @@ require 'java_buildpack/component/modular_component'
 require 'java_buildpack/container'
 require 'java_buildpack/container/jetty/jetty_instance'
 
-
 module JavaBuildpack
   module Container
 
@@ -30,11 +29,11 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::ModularComponent#command)
       def command
         [
-          "JETTY_ARGS=jetty.port=$PORT",
-          "JETTY_BASE=.",
-          "JAVA=#{@droplet.java_home.root}/bin/java",
+          'JETTY_ARGS=jetty.port=$PORT',
+          'JETTY_BASE=.',
+          'JAVA=#{@droplet.java_home.root}/bin/java',
           @droplet.java_home.as_env_var,
-          "$PWD/#{(@droplet.sandbox + 'bin/jetty.sh').relative_path_from(@droplet.root)}",
+          '$PWD/#{(@droplet.sandbox + "bin/jetty.sh").relative_path_from(@droplet.root)}',
           'run'
         ].flatten.compact.join(' ')
       end
@@ -42,7 +41,7 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::ModularComponent#sub_components)
       def sub_components(context)
         [
-          JettyInstance.new(sub_configuration_context(context, 'jetty')),
+          JettyInstance.new(sub_configuration_context(context, 'jetty'))
         ]
       end
 

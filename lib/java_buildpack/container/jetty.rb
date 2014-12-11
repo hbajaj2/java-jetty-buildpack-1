@@ -31,9 +31,9 @@ module JavaBuildpack
         [
           'JETTY_ARGS=jetty.port=$PORT',
           'JETTY_BASE=.',
-          'JAVA=#{@droplet.java_home.root}/bin/java',
+          "JAVA=#{(@droplet.java_home.root + '/bin/java')}",
           @droplet.java_home.as_env_var,
-          '$PWD/#{(@droplet.sandbox + "bin/jetty.sh").relative_path_from(@droplet.root)}',
+          "$PWD/#{(@droplet.sandbox + 'bin/jetty.sh').relative_path_from(@droplet.root)}",
           'run'
         ].flatten.compact.join(' ')
       end

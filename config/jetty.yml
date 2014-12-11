@@ -17,4 +17,4 @@
 ---
 jetty:
   version: 9.2.+
-  repository_root: "https://s3-eu-west-1.amazonaws.com/java-buildpack/jetty/index.yml"
+  repository_root: "https://s3-eu-west-1.amazonaws.com/java-buildpack/jetty/"

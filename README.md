@@ -4,24 +4,19 @@
 [![Code Climate](https://codeclimate.com/repos/5224adaec7f3a3415107004c/badges/bc49f7d7f8dfc47057c8/gpa.svg)](https://codeclimate.com/repos/5224adaec7f3a3415107004c/feed)
 [![Code Climate](https://codeclimate.com/repos/5224adaec7f3a3415107004c/badges/bc49f7d7f8dfc47057c8/coverage.svg)](https://codeclimate.com/repos/5224adaec7f3a3415107004c/feed)
 
-The `java-buildpack` is a [Cloud Foundry][] buildpack for running JVM-based applications.  It is designed to run many JVM-based applications ([Grails][], [Groovy][], Java Main, [Play Framework][], [Spring Boot][], and Servlet) with no additional configuration, but supports configuration of the standard components, and extension to add custom components.
+The `java-jetty-buildpack` is a [Cloud Foundry][] buildpack for running JVM-based applications in jetty.  It is desinged to keep as close as possible to the original Cloud Foundry java buildpack.
 
 ## Usage
 To use this buildpack specify the URI of the repository when pushing an application to Cloud Foundry:
 
 ```bash
-cf push <APP-NAME> -p <ARTIFACT> -b https://github.com/cloudfoundry/java-buildpack.git
+cf push <APP-NAME> -p <ARTIFACT> -b https://github.com/hybris/java-jetty-buildpack.git
 ```
 
 ## Examples
-The following are _very_ simple examples for deploying the artifact types that we support.
+This buildpack is supporting several frameworks and deployment flavours. Never the less we recommend to use the original Cloudnfoundry Java-Buildpacks for none servelet deployments which should run in jetty.
 
-* [Grails](docs/example-grails.md)
-* [Groovy](docs/example-groovy.md)
-* [Java Main](docs/example-java_main.md)
-* [Play Framework](docs/example-play_framework.md)
 * [Servlet](docs/example-servlet.md)
-* [Spring Boot CLI](docs/example-spring_boot_cli.md)
 
 ## Configuration and Extension
 The buildpack supports configuration and extension through the use of Git repository forking.  The easiest way to accomplish this is to use [GitHub's forking functionality][] to create a copy of this repository.  Make the required configuration and extension changes in the copy of the repository.  Then specify the URL of the new repository when pushing Cloud Foundry applications.  If the modifications are generally applicable to the Cloud Foundry community, please submit a [pull request][] with the changes.
@@ -32,14 +27,7 @@ To learn how to configure various properties of the buildpack, follow the "Confi
 * [Design](docs/design.md)
 * [Security](docs/security.md)
 * Standard Containers
-	* [Dist ZIP](docs/container-dist_zip.md)
-	* [Groovy](docs/container-groovy.md) ([Configuration](docs/container-groovy.md#configuration))
-	* [Java Main](docs/container-java_main.md) ([Configuration](docs/container-java_main.md#configuration))
-	* [Play Framework](docs/container-play_framework.md)
-	* [Ratpack](docs/container-ratpack.md)
-	* [Spring Boot](docs/container-spring_boot.md)
-	* [Spring Boot CLI](docs/container-spring_boot_cli.md) ([Configuration](docs/container-spring_boot_cli.md#configuration))
-	* [Tomcat](docs/container-tomcat.md) ([Configuration](docs/container-tomcat.md#configuration))
+	* [Jetty](docs/container-jetty.md) ([Configuration](docs/container-jetty.md#configuration))
 * Standard Frameworks
 	* [AppDynamics Agent](docs/framework-app_dynamics_agent.md) ([Configuration](docs/framework-app_dynamics_agent.md#configuration))
 	* [Java Options](docs/framework-java_opts.md) ([Configuration](docs/framework-java_opts.md#configuration))

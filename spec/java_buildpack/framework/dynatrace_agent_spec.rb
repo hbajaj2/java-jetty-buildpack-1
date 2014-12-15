@@ -35,7 +35,7 @@ describe JavaBuildpack::Framework::DynatraceAgent do
     end
 
     it 'downloads dynatrace agent JAR',
-       cache_fixture: 'stub-dynatrace-agent.jar' do
+        cache_fixture: 'stub-dynatrace-agent.jar' do
 
       component.compile
 
@@ -48,6 +48,15 @@ describe JavaBuildpack::Framework::DynatraceAgent do
       component.release
 
       expect(java_opts).to include("-agentpath:$PWD/.java-buildpack/dynatrace_agent/agent/linux-x86-64/agent/lib64/libdtagent.so=name=test-application-name,server=127.0.0.1")
+    end
+
+    it 'includes yaas env name' do
+      allow(services).to receive(:find_service).and_return('credentials' => { 'host' => '127.0.0.1'  })
+      ENV["ENV_NAME"] = "test"
+
+      component.release
+
+      expect(java_opts).to include("-agentpath:$PWD/.java-buildpack/dynatrace_agent/agent/linux-x86-64/agent/lib64/libdtagent.so=name=yaas_test_test-application-name,server=127.0.0.1")
     end
 
   end

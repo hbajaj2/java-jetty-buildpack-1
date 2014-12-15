@@ -48,11 +48,19 @@ module JavaBuildpack
       FILTER = /dynatrace/.freeze
 
       def application_name
-        @application.details['application_name']
+        if env_name.nil? || env_name.empty?
+          @application.details['application_name']
+        else
+          "yaas_#{env_name}_#{@application.details['application_name']}"
+        end
       end
 
       def host
         @application.services.find_service(FILTER)['credentials']['host']
+      end
+
+      def env_name
+        ENV['ENV_NAME']
       end
 
     end

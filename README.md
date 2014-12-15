@@ -38,6 +38,7 @@ To learn how to configure various properties of the buildpack, follow the "Confi
 	* [PostgreSQL JDBC](docs/framework-postgresql_jdbc.md) ([Configuration](docs/framework-postgresql_jdbc.md#configuration))
 	* [Spring Auto Reconfiguration](docs/framework-spring_auto_reconfiguration.md) ([Configuration](docs/framework-spring_auto_reconfiguration.md#configuration))
 	* [Spring Insight](docs/framework-spring_insight.md)
+	* [DynaTrace](docs/framework-dynaTrace.md)
 * Standard JREs
 	* [OpenJDK](docs/jre-open_jdk_jre.md) ([Configuration](docs/jre-open_jdk_jre.md#configuration))
 	* [Oracle](docs/jre-oracle_jre.md) ([Configuration](docs/jre-oracle_jre.md#configuration))

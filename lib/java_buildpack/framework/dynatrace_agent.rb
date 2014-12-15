@@ -33,7 +33,7 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
         @droplet.java_opts << ("-agentpath:$PWD/#{(@droplet.sandbox + 'agent/linux-x86-64/agent/lib64/libdtagent.so').relative_path_from(@droplet.root)}" +
-            "=name=#{application_name},server=127.0.0.1")
+            "=name=#{application_name},server=#{host}")
       end
 
       protected

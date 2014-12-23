@@ -35,6 +35,7 @@ module JavaBuildpack
           "JAVA_OPTIONS=\"#{@droplet.java_opts.join(' ')}\"",
           @droplet.java_home.as_env_var,
           "$PWD/#{(@droplet.sandbox + 'bin/jetty.sh').relative_path_from(@droplet.root)}",
+          (ENV['DEBUG'] == 'true' ? '-d' : nil),
           'run'
         ].flatten.compact.join(' ')
       end

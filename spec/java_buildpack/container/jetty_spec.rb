@@ -62,6 +62,12 @@ describe JavaBuildpack::Container::Jetty do
         "JAVA_OPTIONS=\"#{java_opts.join(' ')}\" #{java_home.as_env_var} $PWD/.java-buildpack/jetty/bin/jetty.sh run")
   end
 
+  it 'return debug command' do
+    ENV["DEBUG"] = "true"
+    expect(component.command).to eq("JETTY_ARGS=jetty.port=$PORT JETTY_BASE=. JAVA=#{(java_home.root + '/bin/java')} "\
+    "JAVA_OPTIONS=\"#{java_opts.join(' ')}\" #{java_home.as_env_var} $PWD/.java-buildpack/jetty/bin/jetty.sh -d run")
+  end
+
 end
 
 class StubJetty < JavaBuildpack::Container::Jetty

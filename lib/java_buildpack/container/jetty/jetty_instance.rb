@@ -33,6 +33,7 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
         download_tar
+        @droplet.copy_resources
         move_to(@application.root.children, root)
       end
 

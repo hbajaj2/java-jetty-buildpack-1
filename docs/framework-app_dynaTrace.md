@@ -9,11 +9,10 @@ The DynaTrace Agent Framework causes an application to be automatically configur
 </table>
 
 ## User-Provided Service
-When binding AppDynamics using a user-provided service, it must have name or tag with `dynatrace` in it.  The credential payload can contain the following entries:
+When binding DynaTrace using a user-provided service, it must have name or tag with `dynatrace` in it.  The credential payload can contain the following entries:
 
 | Name | Description
 | ---- | -----------
-| `account-access-key` | (Optional) The account access key to use when authenticating with the controller
 | `host` | The collector host name
 
 ## Configuration

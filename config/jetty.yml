@@ -17,4 +17,4 @@
 ---
 jetty:
   version: 9.2.+
-  repository_root: "https://s3-eu-west-1.amazonaws.com/java-buildpack/jetty/"
+  repository_root: "http://repo2.maven.org/maven2/org/eclipse/jetty/jetty-distribution/9.2.5.v20141112/jetty-distribution-9.2.5.v20141112.tar.gz"
